@@ -19,7 +19,7 @@
 html, body {
     width: 100%;
     height: 100%;
-    overflow: hidden; /* Prevent scrollbars */
+    overflow: hidden !important; /* Prevent scrollbars */
     font-family: 'Orbitron', sans-serif;
     color: var(--text-color);
 }
@@ -114,6 +114,9 @@ body {
 }
 
 @media (max-width: 480px) {
+    body{
+        overflow:hidden;
+    }
     .overlay-content h1 {
         font-size: 1.5rem;
     }
