@@ -1,0 +1,128 @@
+:root {
+    --background-start: #0f0c29;
+    --background-mid: #302b63;
+    --background-end: #24243e;
+    --particle-hue-start: 180; /* Starting hue for particles */
+    --glow-color: rgba(173, 216, 230, 0.5); /* Light blue glow */
+    --text-color: #e0e0e0;
+    --button-bg: rgba(255, 255, 255, 0.1);
+    --button-hover-bg: rgba(255, 255, 255, 0.2);
+    --button-border: rgba(255, 255, 255, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevent scrollbars */
+    font-family: 'Orbitron', sans-serif;
+    color: var(--text-color);
+}
+
+body {
+    background: linear-gradient(135deg, var(--background-start), var(--background-mid), var(--background-end));
+    background-size: 400% 400%; /* For animation */
+    animation: gradientBG 15s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Needed for overlay */
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#artCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* Optional: Add subtle glow/blur */
+    /* filter: blur(1px) saturate(1.2); */
+}
+
+.overlay-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent overlay */
+    border-radius: 10px;
+    backdrop-filter: blur(5px); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid var(--button-border);
+}
+
+.overlay-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color);
+}
+
+.overlay-content p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+#resetButton {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    color: var(--text-color);
+    background-color: var(--button-bg);
+    border: 1px solid var(--button-border);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+}
+
+#resetButton:hover {
+    background-color: var(--button-hover-bg);
+    transform: scale(1.05);
+}
+
+#resetButton:active {
+    transform: scale(0.98);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .overlay-content h1 {
+        font-size: 2rem;
+    }
+    .overlay-content p {
+        font-size: 0.9rem;
+    }
+    #resetButton {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .overlay-content h1 {
+        font-size: 1.5rem;
+    }
+    .overlay-content p {
+        font-size: 0.8rem;
+    }
+    .overlay-content {
+        padding: 15px;
+        /* Make overlay slightly smaller on tiny screens if needed */
+        /* max-width: 90%; */
+    }
+}
